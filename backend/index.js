@@ -27,6 +27,12 @@ connection.once('open', function() {
     }
 );
 
+// import routes
+const adminRoutes = require('./routes/admin.routes')
+
+// use routes
+app.use('/admin', adminRoutes)
+
 app.get('/', (req, res) => {
     console.log("Working");
 })
