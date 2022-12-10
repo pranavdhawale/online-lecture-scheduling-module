@@ -1,4 +1,4 @@
-const dotenv = require('dotenv')
+require('dotenv').config()
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 mongoose.set('strictQuery', false);
 
 // connect to mongodb atlas
-const mongouri =  `mongodb+srv://admin:smsjNOMyw4nC4KQs@online-lecture-scheduli.woweejf.mongodb.net/?retryWrites=true&w=majority`
+const mongouri =  `mongodb+srv://admin:${process.env.ATLAS_PASSWORD}@online-lecture-scheduli.woweejf.mongodb.net/?retryWrites=true&w=majority`
 mongoose.connect(mongouri, { useNewUrlParser: true });
 const connection = mongoose.connection;
 
