@@ -29,9 +29,11 @@ connection.once('open', function() {
 
 // import routes
 const adminRoutes = require('./routes/admin.routes')
+const instructorRoutes = require('./routes/instructor.routes')
 
 // use routes
 app.use('/admin', adminRoutes)
+app.use('/instructor', instructorRoutes)
 
 app.get('/', (req, res) => {
     console.log("Working");
