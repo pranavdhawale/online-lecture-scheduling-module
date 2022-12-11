@@ -21,14 +21,13 @@ export default function LoginPage() {
         }
 
         if(document.getElementById('whoami').value == "admin") {
-            console.log("hello");
             axios
             .post("http://localhost:9000/admin/login", inputs)
             .then((res) => {
                 alert(res.data.message);
                 // console.log(res.data.user);
                 sessionStorage.setItem("info", JSON.stringify(res.data.user))
-                navigate("/dashboard")
+                navigate("/admin/dashboard")
             })
             .catch((err) => {
                 console.log('error : ',err);
@@ -39,6 +38,18 @@ export default function LoginPage() {
 
         if(document.getElementById('whoami').value == "instructor") {
             console.log("instructor login");
+            axios
+            .post("http://localhost:9000/instructor/login", inputs)
+            .then((res) => {
+                alert(res.data.message);
+                sessionStorage.setItem("info", JSON.stringify(res.data.user))
+                navigate("/instructor/dashboard")
+            })
+            .catch((err) => {
+                console.log('error : ',err);
+                alert(err.response.data.message);
+            });
+            e.target.reset();
         }
 
     };
