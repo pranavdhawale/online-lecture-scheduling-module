@@ -81,7 +81,8 @@ const loginAdmin = (req, res) => {
                 }
                 if (result) {
                     res.status(200).json({
-                        message: "Admin Login Successful"
+                        message: "Admin Login Successful",
+                        user: admin
                     })
                 }
                 else {
@@ -102,6 +103,7 @@ const loginAdmin = (req, res) => {
 // add instructor function
 const addInstructor = (req, res) => {
     const { name, email } = req.body
+    console.log(req.body);
 
     // Instructor check
     Instructor.findOne({ name: name })
@@ -131,9 +133,25 @@ const addInstructor = (req, res) => {
     })
 }
 
+const getAllInstructors = (req, res) => {
+    Instructor.find({}, function (err, instructors) {
+        if (err) {
+            res.status(500).json({
+                message: 'Oops, something went wrong!',
+                error: err
+            });
+        }
+        res.status(200).json({
+            instructors
+        });
+    }
+    );
+}
+
 // add course function
 const addCourse = (req, res) => {
     const { name, level, description } = req.body
+    console.log(req.body);
 
     // Course check
     Course.findOne({ name: name })
@@ -164,11 +182,26 @@ const addCourse = (req, res) => {
     })
 }
 
+const getAllCourses = (req, res) => {
+    Course.find({}, function (err, courses) {
+        if (err) {
+            res.status(500).json({
+                message: 'Oops, something went wrong!',
+                error: err
+            });
+        }
+        res.status(200).json({
+            courses
+        });
+    }
+    );
+}
+
 // allocate lecture function
 const allocateLecture = (req, res) => {
-    const { course_name, instructor_id, date } = req.body
+    const { course_name, instructor_name, date } = req.body
     // Lecture check
-    Lecture.findOne({ instructor_id: instructor_id, date: date})
+    Lecture.findOne({ instructor_name, date})
     .then(function (lectureData) {
 
         if (lectureData) {
@@ -179,14 +212,19 @@ const allocateLecture = (req, res) => {
         else {
             const lecture = new Lecture({
                 course_name,
-                instructor_id,
+                instructor_name,
                 date
             })
             lecture.save()
-            Instructor.findOne({ _id: instructor_id })
+            Instructor.findOne({ name: instructor_name })
                 .then(function (instructor) {
                     Course.findOne({ name: course_name })
                         .then(function (course) {
+
+                            instructor.lectures.push(lecture._id)
+                            course.lectures.push(lecture._id)
+                            instructor.save()
+                            course.save()
 
                             const transporter = nodeMailer.createTransport({
                                 service: "gmail",
@@ -220,15 +258,11 @@ const allocateLecture = (req, res) => {
                                 else {
                                     console.log("Mail Sent " + info.response);
                                     res.status(200).json({
-                                        message: 'Lecture allocated & Mail sent successfully!'
+                                        message: 'Mail sent successfully!'
                                     });
                                 }
                             })
 
-                            instructor.lectures.push(lecture._id)
-                            course.lectures.push(lecture._id)
-                            instructor.save()
-                            course.save()
                         })
                 })
         }
@@ -245,6 +279,8 @@ module.exports = {
     registerAdmin,
     loginAdmin,
     addInstructor,
+    getAllInstructors,
     addCourse,
+    getAllCourses,
     allocateLecture
 }
