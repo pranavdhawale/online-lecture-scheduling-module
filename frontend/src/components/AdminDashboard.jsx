@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Navigate, useNavigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function AdminDashboard() {
     const [content, setContent] = useState({})
-    const navigate = useNavigate()
 
     useEffect(() => {
         setContent(JSON.parse(sessionStorage.getItem("info")))
-        console.log(content);
     }, [])
 
     return(
