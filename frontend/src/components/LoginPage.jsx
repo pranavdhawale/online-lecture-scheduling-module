@@ -16,6 +16,10 @@ export default function LoginPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if(document.getElementById('whoami').value == "default") {
+            alert("Please select user")
+        }
+
         if(document.getElementById('whoami').value == "admin") {
             console.log("hello");
             axios
@@ -49,7 +53,7 @@ export default function LoginPage() {
             <select id="whoami" onChange={() => {
 
             }}>
-                <option>Select whoami</option>
+                <option value="default">Select whoami</option>
                 <option value="admin">Admin</option>
                 <option value="instructor">Instructor</option>
             </select>
