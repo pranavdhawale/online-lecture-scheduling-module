@@ -102,7 +102,7 @@ const loginAdmin = (req, res) => {
 
 // add instructor function
 const addInstructor = (req, res) => {
-    const { name, email } = req.body
+    const { username, password, name, email } = req.body
     console.log(req.body);
 
     // Instructor check
@@ -114,25 +114,35 @@ const addInstructor = (req, res) => {
             })
         }
         else {
-            const instructor = new Instructor({
-                name,
-                email
+            bcrypt.hash(password, saltRounds, function(err, hashedPassword) {
+                if (err){
+                    res.status(401).json({
+                        err: err
+                    })
+                }
+                const instructor = new Instructor({
+                    username,
+                    password: hashedPassword,
+                    name,
+                    email
+                })
+                instructor.save()
+                    .then(function (result) {
+                        res.status(201).json({
+                            message: "Instructor created successfully"
+                        })
+                    })
+                    .catch(function (err) {
+                        res.status(500).json({
+                            error: err
+                        })
+                    })
             })
-            instructor.save()
-                .then(function (result) {
-                    res.status(201).json({
-                        message: "Instructor created successfully"
-                    })
-                })
-                .catch(function (err) {
-                    res.status(500).json({
-                        error: err
-                    })
-                })
         }
     })
 }
 
+// get list of all instructor function
 const getAllInstructors = (req, res) => {
     Instructor.find({}, function (err, instructors) {
         if (err) {
@@ -182,6 +192,7 @@ const addCourse = (req, res) => {
     })
 }
 
+// get list of all course function
 const getAllCourses = (req, res) => {
     Course.find({}, function (err, courses) {
         if (err) {
@@ -274,6 +285,7 @@ const allocateLecture = (req, res) => {
     })
 }
 
+// get list of all allocated lecture function
 const getAllocatedLectureList = (req, res) => {
     const instructor_name = req.params.instructorName
     console.log(instructor_name);
