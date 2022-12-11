@@ -4,11 +4,9 @@ const Schema = mongoose.Schema
 const Lecture = new Schema({
     course_name: {
         type: String,
-        required: true
     },
-    instructor_id: {
+    instructor_name: {
         type: String,
-        required: true
     },
     date: {
         type: String
