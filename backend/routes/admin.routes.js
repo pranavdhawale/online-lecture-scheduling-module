@@ -30,4 +30,7 @@ router.get('/course-list', adminController.getAllCourses)
 // allocate lecture
 router.post('/allocate-lecture', adminController.allocateLecture)
 
+// allocated lecture by instructor name
+router.post('/allocated-lecture-list/:instructorName', adminController.getAllocatedLectureList)
+
 module.exports = router;
