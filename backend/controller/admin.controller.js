@@ -274,6 +274,33 @@ const allocateLecture = (req, res) => {
     })
 }
 
+const getAllocatedLectureList = (req, res) => {
+    const instructor_name = req.params.instructorName
+    console.log(instructor_name);
+
+    Instructor.findOne({ name: instructor_name} )
+    .then(function (instructor) {
+        console.log(instructor);
+        Lecture.find({ instructor_name: instructor.name })
+        .then(function (lectures) {
+            console.log(lectures);
+            res.status(200).json({
+                lectures
+            });
+        })
+        .catch(function (err) {
+            res.status(500).json({
+                error: err
+            });
+        });
+    })
+    .catch(function (err) {
+        res.status(500).json({
+            message: 'Something went wrong'
+        })
+    })
+}
+
 module.exports = {
     test,
     registerAdmin,
@@ -282,5 +309,6 @@ module.exports = {
     getAllInstructors,
     addCourse,
     getAllCourses,
-    allocateLecture
+    allocateLecture,
+    getAllocatedLectureList
 }
