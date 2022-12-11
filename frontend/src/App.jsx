@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
-import AdminDashboard from "./components/AdminDashboard";
+import AdminDashboard from "./components/admin/AdminDashboard";
 import AddInstructor from "./components/admin/AddInstructor";
 import ViewInstructors from "./components/admin/ViewInstructors";
 import AddCourse from "./components/admin/AddCourse";
