@@ -15,19 +15,28 @@ export default function LoginPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios
-        .post("http://localhost:9000/admin/login", inputs)
-        .then((res) => {
-            alert(res.data.message);
-            // console.log(res.data.user);
-            sessionStorage.setItem("info", JSON.stringify(res.data.user))
-            navigate("/dashboard")
-        })
-        .catch((err) => {
-            console.log('error : ',err);
-            alert(err.response.data.message);
-        });
-        e.target.reset();
+
+        if(document.getElementById('whoami').value == "admin") {
+            console.log("hello");
+            axios
+            .post("http://localhost:9000/admin/login", inputs)
+            .then((res) => {
+                alert(res.data.message);
+                // console.log(res.data.user);
+                sessionStorage.setItem("info", JSON.stringify(res.data.user))
+                navigate("/dashboard")
+            })
+            .catch((err) => {
+                console.log('error : ',err);
+                alert(err.response.data.message);
+            });
+            e.target.reset();
+        }
+
+        if(document.getElementById('whoami').value == "instructor") {
+            console.log("instructor login");
+        }
+
     };
 
 
@@ -37,8 +46,16 @@ export default function LoginPage() {
         <p className="text-3xl">Login Page</p>
 
         <form onSubmit={handleSubmit}>
-            <input type="text" name="username" placeholder="Enter Username" onChange={handleChanges}/>
-            <input type="password" name="password" placeholder="Enter Password" onChange={handleChanges}/>
+            <select id="whoami" onChange={() => {
+
+            }}>
+                <option>Select whoami</option>
+                <option value="admin">Admin</option>
+                <option value="instructor">Instructor</option>
+            </select>
+
+            <input required type="text" name="username" placeholder="Enter Username" onChange={handleChanges}/>
+            <input required type="password" name="password" placeholder="Enter Password" onChange={handleChanges}/>
             <button type="submit">Submit</button>
         </form>
         </>
