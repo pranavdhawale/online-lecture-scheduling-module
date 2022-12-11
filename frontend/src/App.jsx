@@ -14,13 +14,13 @@ export default function App() {
     <>
     <Routes>
       <Route exact path="/" element={< LoginPage />}/>
-      <Route exact path="/dashboard" element={<AdminDashboard />}/>
-      <Route exact path="/add-instructor" element={<AddInstructor />}/>
-      <Route exact path="/view-instructors" element={<ViewInstructors />}/>
-      <Route exact path="/add-course" element={<AddCourse />}/>
-      <Route exact path="/view-courses" element={<ViewCourses />}/>
-      <Route exact path="/allocate-lecture" element={<AllocateLecture />}/>
-      <Route exact path="/allocated-lecture" element={<AllocatedLecture />}/>
+      <Route exact path="/admin/dashboard" element={<AdminDashboard />}/>
+      <Route exact path="/admin/add-instructor" element={<AddInstructor />}/>
+      <Route exact path="/admin/view-instructors" element={<ViewInstructors />}/>
+      <Route exact path="/admin/add-course" element={<AddCourse />}/>
+      <Route exact path="/admin/view-courses" element={<ViewCourses />}/>
+      <Route exact path="/admin/allocate-lecture" element={<AllocateLecture />}/>
+      <Route exact path="/admin/allocated-lecture" element={<AllocatedLecture />}/>
     </Routes>
     </>
   )
