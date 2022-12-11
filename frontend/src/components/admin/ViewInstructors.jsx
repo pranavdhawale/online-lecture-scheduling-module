@@ -17,7 +17,7 @@ export default function ViewInstructors() {
 
     return(
         <>
-        <NavLink to="/dashboard"><button>Back</button></NavLink>
+        <NavLink to="/admin/dashboard"><button>Back</button></NavLink>
         <p className="text-3xl">View Instructors</p>
 
         <table className="border">

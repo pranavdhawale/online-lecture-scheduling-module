@@ -53,7 +53,7 @@ export default function AllocateLecture() {
 
     return(
         <>
-        <NavLink to="/dashboard"><button>Back</button></NavLink>
+        <NavLink to="/admin/dashboard"><button>Back</button></NavLink>
         <p className="text-3xl">Allocate Lecture</p>
 
         <form onSubmit={handleSubmit}>

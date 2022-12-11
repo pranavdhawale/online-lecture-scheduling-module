@@ -29,7 +29,7 @@ export default function AddInstructor() {
 
     return(
         <>
-        <NavLink to="/dashboard"><button>Back</button></NavLink>
+        <NavLink to="/admin/dashboard"><button>Back</button></NavLink>
         <p className="text-3xl">Add Instructor</p>
 
         <form onSubmit={handleSubmit}>

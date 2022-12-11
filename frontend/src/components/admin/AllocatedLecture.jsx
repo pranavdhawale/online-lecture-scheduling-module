@@ -42,7 +42,7 @@ export default function AllocatedLecture() {
 
     return(
         <>
-        <NavLink to="/dashboard"><button>Back</button></NavLink>
+        <NavLink to="/admin/dashboard"><button>Back</button></NavLink>
         <p className="text-3xl">Allocated Lecture</p>
 
         <select id="instructorName" onClick={handleChanges}>

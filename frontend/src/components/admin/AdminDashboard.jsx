@@ -16,10 +16,10 @@ export default function AdminDashboard() {
         <p>Name : {content.name}</p>
 
         <div>
-            <NavLink to="/add-instructor">
+            <NavLink to="/admin/add-instructor">
                 <button className="border">ADD INSTRUCTOR</button>
             </NavLink>
-            <NavLink to="/view-instructors">
+            <NavLink to="/admin/view-instructors">
                 <button className="border">VIEW INSTRUCTORS</button>
             </NavLink>
         </div>
@@ -27,10 +27,10 @@ export default function AdminDashboard() {
         <br />
         
         <div>
-            <NavLink to="/add-course">
+            <NavLink to="/admin/add-course">
                 <button className="border">ADD COURSE</button>
             </NavLink>
-            <NavLink to="/view-courses">
+            <NavLink to="/admin/view-courses">
                 <button className="border">VIEW COURSES</button>
             </NavLink>
         </div>
@@ -38,10 +38,10 @@ export default function AdminDashboard() {
         <br />
         
         <div>
-            <NavLink to="/allocate-lecture">
+            <NavLink to="/admin/allocate-lecture">
                 <button className="border">ALLOCATE LECTURE</button>
             </NavLink>
-            <NavLink to="/allocated-lecture">
+            <NavLink to="/admin/allocated-lecture">
                 <button className="border">ALLOCATED LECTURE</button>
             </NavLink>
         </div>
