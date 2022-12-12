@@ -41,7 +41,8 @@ export default function AllocateLecture() {
         axios
         .post("http://localhost:9000/admin/allocate-lecture", inputs)
         .then((res) => {
-            alert(res.data.messsage)
+            // console.log(res.data.message);
+            alert(res.data.message)
         })
         .catch((err) => {
             console.log('error : ',err);
