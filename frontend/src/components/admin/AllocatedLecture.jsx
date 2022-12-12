@@ -31,7 +31,6 @@ export default function AllocatedLecture() {
         .post(`http://localhost:9000/admin/allocated-lecture-list/${document.getElementById('instructorName').value}`, inputs)
         .then((res) => {
             setLectures(res.data.lectures)
-            console.log(lecture);
         })
         .catch((err) => {
             console.log('error : ',err);
