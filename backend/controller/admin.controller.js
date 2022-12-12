@@ -219,7 +219,7 @@ const allocateLecture = (req, res) => {
     const convertedDate = dd + '/' + mm + '/' + yyyy
 
     // Lecture check
-    Lecture.findOne({ instructor_name, date})
+    Lecture.findOne({ instructor_name, convertedDate})
     .then(function (lectureData) {
 
         if (lectureData) {
@@ -231,7 +231,7 @@ const allocateLecture = (req, res) => {
             const lecture = new Lecture({
                 course_name,
                 instructor_name,
-                convertedDate
+                date: convertedDate
             })
             lecture.save()
             Instructor.findOne({ name: instructor_name })
