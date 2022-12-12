@@ -10,4 +10,7 @@ router.get('/', instructorController.test)
 // login
 router.post('/login', instructorController.loginInstructor)
 
+// allocated lecture by instructor name
+router.get('/allocated-lecture-list/:instructorName', instructorController.getAllocatedLectureList)
+
 module.exports = router;
