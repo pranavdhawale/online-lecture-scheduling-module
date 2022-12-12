@@ -211,6 +211,13 @@ const getAllCourses = (req, res) => {
 // allocate lecture function
 const allocateLecture = (req, res) => {
     const { course_name, instructor_name, date } = req.body
+    
+    const yyyy = date.split('-')[0]
+    const mm = date.split('-')[1]
+    const dd = date.split('-')[2]
+    
+    const convertedDate = dd + '/' + mm + '/' + yyyy
+
     // Lecture check
     Lecture.findOne({ instructor_name, date})
     .then(function (lectureData) {
@@ -224,7 +231,7 @@ const allocateLecture = (req, res) => {
             const lecture = new Lecture({
                 course_name,
                 instructor_name,
-                date
+                convertedDate
             })
             lecture.save()
             Instructor.findOne({ name: instructor_name })
@@ -253,7 +260,7 @@ const allocateLecture = (req, res) => {
                                 from: process.env.EMAIL,
                                 to: instructor.email,
                                 subject: "Lecture Allocated",
-                                text: "Hey! " + instructor.name + ",\nYou have been allocated an lecture of " + course.name + " on " + date + "\nThanks!"
+                                text: "Hey! " + instructor.name + ",\nYou have been allocated an lecture of " + course.name + " on " + convertedDate + "\nThanks!"
                             }
 
                             console.log("Mail Drafted");
