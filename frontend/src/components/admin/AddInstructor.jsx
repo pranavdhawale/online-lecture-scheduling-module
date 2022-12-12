@@ -33,6 +33,8 @@ export default function AddInstructor() {
         <p className="text-3xl">Add Instructor</p>
 
         <form onSubmit={handleSubmit}>
+            <input type="text" name="username" placeholder="Enter Username" onChange={handleChanges}/>
+            <input type="text" name="password" placeholder="Enter Password" onChange={handleChanges}/>
             <input type="text" name="name" placeholder="Enter Name" onChange={handleChanges}/>
             <input type="email" name="email" placeholder="Enter Email" onChange={handleChanges}/>
             <button type="submit">Submit</button>
