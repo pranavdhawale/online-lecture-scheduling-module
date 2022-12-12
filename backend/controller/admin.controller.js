@@ -288,14 +288,11 @@ const allocateLecture = (req, res) => {
 // get list of all allocated lecture function
 const getAllocatedLectureList = (req, res) => {
     const instructor_name = req.params.instructorName
-    console.log(instructor_name);
 
     Instructor.findOne({ name: instructor_name} )
     .then(function (instructor) {
-        console.log(instructor);
         Lecture.find({ instructor_name: instructor.name })
         .then(function (lectures) {
-            console.log(lectures);
             res.status(200).json({
                 lectures
             });
