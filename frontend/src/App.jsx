@@ -9,6 +9,9 @@ import ViewCourses from "./components/admin/ViewCourse";
 import AllocateLecture from "./components/admin/AllocateLecture";
 import AllocatedLecture from "./components/admin/AllocatedLecture";
 
+import InstructorDashboard from "./components/instructor/InstructorDashboard";
+import ViewLectures from "./components/instructor/ViewLectures";
+
 export default function App() {
   return(
     <>
@@ -21,6 +24,8 @@ export default function App() {
       <Route exact path="/admin/view-courses" element={<ViewCourses />}/>
       <Route exact path="/admin/allocate-lecture" element={<AllocateLecture />}/>
       <Route exact path="/admin/allocated-lecture" element={<AllocatedLecture />}/>
+      <Route exact path="/instructor/dashboard" element={<InstructorDashboard />}/>
+      <Route exact path="/instructor/view-lectures" element={<ViewLectures />}/>
     </Routes>
     </>
   )
